@@ -14,7 +14,12 @@ const gifts3 = []
 const preparedGifts3 = prepareGifts(gifts3)
 console.log(preparedGifts3) // []
 // No hay regalos, la lista queda vacía
+--------------------------------------------------------
 
 function prepareGifts(gifts) {
   return [...new Set(gifts)].sort((a, b) => a - b);
 }
+
+function procesarRegalos(numerosMagicos) {
+    // Usamos un Set para eliminar duplicados y luego ordenamos el resultado
+    return [...new Set(numerosMagicos)].sort((a, b) => a - b);
