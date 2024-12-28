@@ -1,0 +1,12 @@
+function decodeFilename(filename) {
+  const underscoreIndex = filename.indexOf('_');
+   const lastDotIndex = filename.lastIndexOf('.');
+  return filename.slice(underscoreIndex +1, lastDotIndex);
+}
+
+function decodeFilename(filename) {
+  const [_id, ...file] = filename.split('_');
+  const [name, ext, unusedExtension] = file.join('_').split('.');
+  return `${name}.${ext}`
+}
+
