@@ -1,0 +1,62 @@
+function createFrame(names) {
+  const maxLength = Math.max(...names.map((name) => name.length));
+  const border = '*'.repeat(maxLength + 4);
+  const framedNames = names.map((name) => `* ${name.padEnd(maxLength, ' ')} *`);
+
+  return [border, ...framedNames, border].join('\n');
+}
+
+function createFrame(names) {
+  const longest = Math.max(...names.map(name => name.length))
+  const border = "*".repeat(longest + 4)
+  let buffer = ''
+
+  buffer += `${border}\n`
+  for (let name of names) {
+     buffer += `* ${name.padEnd(longest)} *\n`
+  }
+  buffer += `${border}`
+
+  return buffer
+}
+
+// chatgpt
+function createFrame(names) {
+    // Encontrar la longitud del nombre más largo
+    const maxLength = Math.max(...names.map(name => name.length));
+    
+    // Calcular la anchura del marco (nombre más largo + 2 espacios + 2 asteriscos)
+    const frameWidth = maxLength + 2 + 2;
+    
+    // Crear la fila superior e inferior del marco
+    const border = '*'.repeat(frameWidth);
+    
+    // Crear las filas intermedias con los nombres
+    const framedNames = names.map(name => `* ${name.padEnd(maxLength)} *`);
+    
+    // Juntar todo en una sola salida
+    return [border, ...framedNames, border].join('\n');
+}
+
+//grok
+function createFrame(names) {
+    // Encuentra el nombre más largo para determinar el ancho del marco
+    const maxLength = Math.max(...names.map(name => name.length));
+    
+    // Construye el borde superior e inferior del marco
+    const border = '*'.repeat(maxLength + 4);  // +4 por los dos asteriscos a cada lado y dos espacios
+
+    // Crear las líneas con los nombres
+    const frame = [border];
+    for (const name of names) {
+        // Alinea cada nombre a la izquierda y rellena con espacios hasta el ancho máximo
+        const line = `* ${name.padEnd(maxLength, ' ')} *`;
+        frame.push(line);
+    }
+    
+    // Añadir el borde inferior
+    frame.push(border);
+    
+    // Unir todas las líneas en una sola cadena
+    return frame.join('\n');
+}
