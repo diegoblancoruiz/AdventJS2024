@@ -1,0 +1,71 @@
+function organizeInventory(inventory) {
+  const buffer = {}
+
+  for (const {category, name, quantity} of inventory) {
+    buffer[category] ??= {}
+    buffer[category][name] ??= 0
+    buffer[category][name] += quantity;
+  }
+  return buffer
+}
+
+function organizeInventory(inventory) {
+  return inventory.reduce(
+    (result, { category, name, quantity }) => (
+      (result[category] ??= {}),
+      (result[category][name] = ~~result[category][name] + quantity),
+      result
+    ),
+    {},
+  );
+}
+
+//chatgpt
+function organizeInventory(inventory) {
+    if (inventory.length === 0) return {}; // Si el array está vacío, retorna un objeto vacío
+
+    const organizedInventory = {}; // Objeto para almacenar el inventario organizado
+
+    for (const item of inventory) {
+        const { name, quantity, category } = item; // Desestructurar las propiedades del objeto
+
+        // Asegurarnos de que la categoría exista en el objeto
+        if (!organizedInventory[category]) {
+            organizedInventory[category] = {};
+        }
+
+        // Sumar cantidades si el juguete ya existe, o inicializarlo
+        if (organizedInventory[category][name]) {
+            organizedInventory[category][name] += quantity;
+        } else {
+            organizedInventory[category][name] = quantity;
+        }
+    }
+
+    return organizedInventory;
+}
+
+//grok
+function organizeInventory(inventory) {
+    if (inventory.length === 0) return {};
+
+    // Objeto para almacenar el inventario organizado
+    const organizedInventory = {};
+
+    // Procesar cada juguete del inventario
+    for (const item of inventory) {
+        if (!organizedInventory[item.category]) {
+            organizedInventory[item.category] = {};
+        }
+
+        if (organizedInventory[item.category][item.name]) {
+            // Si ya existe el juguete en esta categoría, sumar las cantidades
+            organizedInventory[item.category][item.name] += item.quantity;
+        } else {
+            // Si no existe, añadirlo con su cantidad
+            organizedInventory[item.category][item.name] = item.quantity;
+        }
+    }
+
+    return organizedInventory;
+}
